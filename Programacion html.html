@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cibernet Coffee - Soluciones Tecnológicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables CSS */
+        :root {
+            --spacing-xs: 0.625rem;
+            --spacing-sm: 1.25rem;
+            --spacing-md: 1.875rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 3.125rem;
+            --spacing-xxl: 3.75rem;
+            --color-white: #ffffff;
+            --color-light: #f8f9fa;
+            --color-dark: #1e293b;
+            --color-primary: #2563eb;
+            --color-accent: #10b981;
+            --font-size-heading: 2.25rem;
+            --font-size-subheading: 1.5rem;
+            --font-size-body: 1.125rem;
+        }
+
+        /* Estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--color-dark);
+            background-color: var(--color-white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-full {
+            padding: var(--spacing-xl);
+        }
+
+        .section-light {
+            background-color: var(--color-light);
+        }
+
+        .section-dark {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--color-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: var(--font-size-heading);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: var(--font-size-body);
+            margin-bottom: var(--spacing-lg);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image img{
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 255, 191, 0.658);
+        }
+
+        /* Section Headings */
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-size: var(--font-size-heading);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-subtitle {
+            font-size: var(--font-size-body);
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .accent-title {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .accent-title::before {
+            content: "*";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .feature-card {
+            background-color: var(--color-white);
+            border-radius: 10px;
+            padding: var(--spacing-lg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-dark);
+        }
+
+        .feature-description {
+            color: #64748b;
+        }
+
+        /* Columns Layout */
+        .columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+        }
+
+        .column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        /* Resource Cards */
+        .resource-section {
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .resource-card {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .resource-content {
+            flex: 1;
+        }
+
+        .resource-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .resource-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-title {
+            font-size: var(--font-size-subheading);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .img1 {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* List Styles */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-text {
+            font-size: var(--font-size-body);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            padding: var(--spacing-xxl) 0 var(--spacing-lg);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-column h3 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* Spacing Utilities */
+        .spacer-sm {
+            height: var(--spacing-sm);
+        }
+
+        .spacer-md {
+            height: var(--spacing-md);
+        }
+
+        .spacer-lg {
+            height: var(--spacing-lg);
+        }
+
+        .spacer-xl {
+            height: var(--spacing-xl);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-white);
+                flex-direction: column;
+                padding: var(--spacing-md) 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0;
+                padding: var(--spacing-sm) 2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+
+            .columns {
+                flex-direction: column;
+            }
+
+            .resource-card {
+                flex-direction: column;
+            }
+
+            .resource-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-full {
+                padding: var(--spacing-lg);
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-laptop-code"></i>
+                Cibernet Coffee
+            </a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#proyecto">El Proyecto</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Bienvenido al Cibernet Coffee</h1>
+                
+                <div class="spacer-md"></div>
+                
+                <div class="hero-description">
+                    Aquí en el <strong>Cibernet Edition Coffee</strong> o más conocido como Virtual Fuengirola Café: Guía interactiva del IES Fuengirola nº1
+                     encontrarás soluciones y propuestas para problemas que pueden haber en un centro tecnológico.
+                </div>
+                
+                <div class="spacer-md"></div>
+                
+                <div class="hero-buttons">
+                    <a href="#proyecto" class="btn btn-primary">Explorar Proyecto</a>
+                </div>
+            </div>
+            
+            <div class="spacer-lg"></div>
+            
+            <div class="hero-image">
+                <img class="img1" src="https://coffee3569.wordpress.com/wp-content/uploads/2025/11/sample_0-7.jpg?w=1024" alt="Entorno tecnológico del Cibernet Coffee" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Description Section -->
+    <section class="section section-light" id="proyecto">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title accent-title">El proyecto Cibernet Coffee</h2>
+                <p class="section-subtitle">Navega por nuestras instalaciones, interactúa con la tecnología y descubre propuestas de mejora en un entorno virtual.</p>
+            </div>
+            
+            <div class="spacer-xl"></div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">Instalaciones Virtuales</h3>
+                    <p class="feature-description">Recorre las aulas, la sala de servidores y la biblioteca del centro educativo en un entorno 2.5D inmersivo.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3 class="feature-title">Acciones Simuladas</h3>
+                    <p class="feature-description">Configura equipos, instala software y gestiona servicios de red para una experiencia de aprendizaje práctica.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3 class="feature-title">Información Técnica</h3>
+                    <p class="feature-description">Accede a detalles sobre componentes de PC, topologías de red y servicios activos en cada zona del centro.</p>
+                </div>
+            </div>
+            
+            <div class="spacer-lg"></div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">Propuestas de Mejora</h3>
+                    <p class="feature-description">Descubre ideas para optimizar la infraestructura, seguridad, ergonomía y sostenibilidad del centro.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3 class="feature-title">Mapa Interactivo</h3>
+                    <p class="feature-description">Utiliza nuestro mapa visual para explorar las diferentes zonas del IES y acceder rápidamente a sus contenidos.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3 class="feature-title">Recursos Educativos</h3>
+                    <p class="feature-description">Encuentra contenidos digitales y materiales formativos relevantes para cada área del centro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="section" id="recursos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title accent-title">Nuestros Recursos</h2>
+                <p class="section-subtitle">Aclaración: Es posible que no todos los recursos estén accesibles desde esta página web y se tenga que acceder mediante medios externos.</p>
+            </div>
+            
+            <div class="resource-section">
+                <div class="resource-card">
+                    <div class="resource-content">
+                        <h3 class="resource-title accent-title">Presentación de proyecto (Canva)</h3>
+                        <ul class="checklist">
+                            <li>Colabora en la mejora del proyecto</li>
+                            <li>Muestra tus proyectos</li>
+                            <li>Experimenta el mundo de la tecnología</li>
+                        </ul>
+                    </div>
+                    <div class="resource-image">
+                        <img src="https://s0.wp.com/wp-content/themes/pub/twentytwentyfour/assets/images/tourist-and-building.webp" alt="Presentación del proyecto" />
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://coffee3569.wordpress.com/wp-content/uploads/2025/11/sample_0-10.jpg" alt="Emulador de red" />
+                    </div>
+                    <div class="resource-content">
+                        <h3 class="resource-title accent-title">Emulador de red (Packet Tracer)</h3>
+                        <ul class="checklist">
+                            <li>Un mundo de artículos que invitan a la reflexión</li>
+                            <li>Casos de estudio que celebran la tecnología</li>
+                            <li>Acceso a información sobre el diseño</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-content">
+                        <h3 class="resource-title accent-title">Diseño 2.5D (SketchUp)</h3>
+                        <ul class="checklist">
+                            <li>Colabora con otros técnicos</li>
+                            <li>Muestra tus proyectos al mundo</li>
+                            <li>Experimenta y construye el mundo de las técnicas</li>
+                        </ul>
+                    </div>
+                    <div class="resource-image">
+                        <img src="https://coffee3569.wordpress.com/wp-content/uploads/2025/11/image.jpeg" alt="Diseño 2.5D" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="testimonial">
+                <p class="testimonial-text">
+                    "Este proyecto está basado en una idea totalmente original y personal de la cual se ha partido desde cero y de la cual no hay esquemas que me hayan servido de ayuda con lo cual espero que hayan disfrutado mucho de este proyecto, salu2."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cibernet Coffee</h3>
+                    <p>Soluciones y propuestas tecnológicas para centros educativos.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#proyecto">El Proyecto</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Presentación Canva</a></li>
+                        <li><a href="#">Emulador de Red</a></li>
+                        <li><a href="#">Diseño 2.5D</a></li>
+                        <li><a href="#">Documentación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@cibernetcoffee.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> IES Fuengirola</li>
+                        <li><i class="fas fa-clock"></i> Disponible en horario escolar</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Cibernet Coffee. Proyecto educativo con fines didácticos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-menu').classList.remove('active');
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .resource-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
